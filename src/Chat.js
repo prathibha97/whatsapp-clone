@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import {
@@ -8,8 +8,20 @@ import {
   InsertEmoticon,
   Mic,
 } from "@material-ui/icons";
+import axios from "./axios";
 
 function Chat({ messages }) {
+  const sendMessage = async(e) => {
+    e.preventDefault();
+    await axios.post("/messages/new", {
+      message: input,
+      name: "Demo",
+      timestamp: "Just now!",
+      received: false,
+    });
+    setInput("");
+  };
+  const [input, setInput] = useState("");
   return (
     <div className='chat'>
       <div className='chat_header'>
@@ -42,8 +54,15 @@ function Chat({ messages }) {
       <div className='chat_footer'>
         <InsertEmoticon />
         <form>
-          <input type='text' placeholder='Type a message' />
-          <button type='submit'>Send message</button>
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            type='text'
+            placeholder='Type a message'
+          />
+          <button onClick={sendMessage} type='submit'>
+            Send message
+          </button>
         </form>
         <Mic />
       </div>
