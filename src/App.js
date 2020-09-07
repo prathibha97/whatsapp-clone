@@ -2,8 +2,12 @@ import React, { useEffect } from "react";
 import "./App.css";
 import Sidebar from "./Sidebar";
 import Chat from "./Chat";
+import Pusher from 'pusher-js'
 
 function App() {
+  useEffect(()=>{
+    
+  },[])
   useEffect(()=>{
     const pusher = new Pusher('70e47dcea78ebf55fb79', {
       cluster: 'mt1'
