@@ -9,7 +9,7 @@ import {
   Mic,
 } from "@material-ui/icons";
 
-function Chat() {
+function Chat({ messages }) {
   return (
     <div className='chat'>
       <div className='chat_header'>
@@ -31,21 +31,13 @@ function Chat() {
         </div>
       </div>
       <div className='chat_body'>
-        <p className='chat_message'>
-          <span className='chat_name'>Prathibha</span>
-          This is a message
-          <span className='chat_timestamp'>{new Date().toUTCString()}</span>
-        </p>
-        <p className='chat_receiver chat_message'>
-          <span className='chat_name'>Prathibha</span>
-          This is a message
-          <span className='chat_timestamp'>{new Date().toUTCString()}</span>
-        </p>
-        <p className='chat_message'>
-          <span className='chat_name'>Prathibha</span>
-          This is a message
-          <span className='chat_timestamp'>{new Date().toUTCString()}</span>
-        </p>
+        {messages.map((message) => (
+          <p className={`chat_message ${message.received && "chat_receiver"}`}>
+            <span className='chat_name'>{message.name}</span>
+            {message.message}
+            <span className='chat_timestamp'>{message.timestamp}</span>
+          </p>
+        ))}
       </div>
       <div className='chat_footer'>
         <InsertEmoticon />
