@@ -12,7 +12,7 @@ function App() {
       setMessages(response.data);
     });
   }, []);
-  console.log(messages);
+  // console.log(messages);
 
   useEffect(() => {
     const pusher = new Pusher("70e47dcea78ebf55fb79", {

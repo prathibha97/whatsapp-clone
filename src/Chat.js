@@ -17,7 +17,7 @@ function Chat({ messages }) {
       message: input,
       name: "Demo",
       timestamp: "Just now!",
-      received: false,
+      received: true,
     });
     setInput("");
   };
